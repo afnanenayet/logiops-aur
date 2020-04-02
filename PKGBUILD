@@ -3,7 +3,7 @@
 pkgname=logiops-git
 _pkgname="logiops"
 _gitpkgname="logiops"
-pkgver=r33.38dcc65
+pkgver=r37.00298c0
 pkgrel=1
 pkgdesc="An unofficial driver for Logitech HID++>2.0 mice and keyboard"
 arch=('x86_64')
@@ -15,6 +15,12 @@ conflicts=("${_pkgname-*}")
 provides=("${_pkgname-*}")
 source=("git+https://github.com/PixlOne/$_gitpkgname")
 sha256sums=('SKIP')
+
+prepare() {
+    cd "$_gitpkgname"
+    git submodule init
+    git submodule update --recursive
+}
 
 pkgver() {
     cd "$_gitpkgname"
